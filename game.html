@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌵 Camel Desert Run</title>
+    <link rel="stylesheet" href="game.css" />
+</head>
+
+<body>
+    <div id="game">
+        <div id="sky">
+            <div id="sun"></div>
+        </div>
+        <div id="scoreboard">
+            <div id="score">Score: 0 | Level: 1</div>
+
+
+            <button id="muteButton">🔊 Mute</button>
+        </div>
+    </div>
+    <div id="desert">
+        <div id="camel"></div>
+    </div>
+    </div>
+
+    <!-- Audio -->
+    <audio id="jumpSound" src="J.mp3" preload="auto"></audio>
+    <audio id="hitSound" src="H.mp3" preload="auto"></audio>
+    <audio id="backgroundMusic" src="A.mp3" preload="auto" loop></audio>
+
+    <!-- Script -->
+    <script src="game.js"></script>
+</body>
+
+</html>

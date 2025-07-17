@@ -1,0 +1,164 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+#game {
+  width: 100vw;
+  height: 100vh;
+  background: lightblue;
+  position: relative;
+  transition: background 2s;
+}
+
+
+
+@keyframes storm {
+  from { background-position: 0 0; }
+  to { background-position: 100px 0; }
+}
+
+@keyframes dayNightCycle {
+  0% {
+    background: linear-gradient(to bottom, #f8c471, #87ceeb); /* sunrise */
+  }
+  25% {
+    background: linear-gradient(to bottom, #87ceeb, #87ceeb); /* day */
+  }
+  50% {
+    background: linear-gradient(to bottom, #f39c12, #d35400); /* sunset */
+  }
+  75% {
+    background: linear-gradient(to bottom, #2c3e50, rgb(9, 55, 104)); /* night */
+  }
+  100% {
+    background: linear-gradient(to bottom, #f8c471, #87ceeb); /* back to sunrise */
+  }
+}
+
+#sky {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+  animation: dayNightCycle 60s linear infinite; /* Smooth cycle */
+}
+
+#sun {
+  width: 80px;
+  height: 80px;
+  background: url("S.png") no-repeat center/contain;
+  border-radius: 50%;
+  position: absolute;
+  top: 40px; /* distance from the top */
+  left: 50%; /* center horizontally */
+  transform: translateX(-50%); /* adjust to perfect center */
+}
+
+.cloud {
+  width: 100px;
+  height: 60px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 30px 0 white, 60px 0 white;
+  animation: cloudMove 25s linear infinite;
+}
+
+#game.night .cloud {
+  background: #ccc;
+  box-shadow: 30px 0 #ccc, 60px 0 #ccc;
+}
+
+@keyframes cloudMove {
+  from { left: 100vw; }
+  to { left: -200px; }
+}
+
+#scoreboard {
+  position: absolute;
+  width: 80%;
+  top: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 10;
+  color: #000;
+  font-size: 20px;
+}
+
+#theme-buttons button {
+  margin: 0 4px;
+  padding: 5px 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#desert {
+  position: absolute;
+  bottom: 0;
+  height: 40%;
+  width: 100%;
+  background: #f4d44c;
+  overflow: hidden;
+}
+
+#camel {
+  width: 120px;
+  height: 200px;
+  background: url("C.png") no-repeat center/contain;
+  position: absolute;
+   bottom: 30px; /* raised the cactus slightly */
+  left: 100px; /* lowered the camel slightly */
+}
+
+.cactus {
+  width: 100px;
+  height: 100px;
+  background:url("CC.png") no-repeat center/contain;
+  position: absolute;
+  bottom: 130px; /* raised the cactus slightly */
+  left: 100vw;
+}
+
+
+@media (max-width: 500px) {
+  #camel { width: 50px; height: 50px; }
+  .cactus { width: 30px; height: 30px; }
+  #sun { width: 50px; height: 50px; }
+  #scoreboard { font-size: 16px; }
+}
+
+
+
+.camel.jump {
+  animation: jump 5s ease-out;
+}
+
+@keyframes jump {
+  0% { bottom: 0; }
+  50% { bottom: 150px; } /* Peak height */
+  100% { bottom: 0; }
+}
+
+
+
+#camel-shadow {
+  width: 80px;
+  height: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  position: absolute;
+  left: 100px;
+  bottom: 10px; /* aligned with new camel position */
+  transform: scale(1);
+  transition: transform 0.6s ease, left 0.9s ease;
+}
+
+
+#camel.jump + #camel-shadow {
+  transform: scale(1.5, 0.6);
+  left: 130px;
+}
+
